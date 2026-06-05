@@ -1,6 +1,6 @@
 "use client"
 
-import { Leaf, Camera, MessageCircle, Send } from "lucide-react"
+import { Leaf, Camera } from "lucide-react"
 import type { Lang } from "@/lib/translations"
 import { translations } from "@/lib/translations"
 
@@ -67,14 +67,8 @@ export function SiteFooter({ lang }: { lang: Lang }) {
             </li>
           </ul>
           <div className="mt-4 flex gap-3">
-            <SocialLink href="#" label="Instagram">
+            <SocialLink href="https://www.instagram.com/gloria.skhidnytsia/" label="Instagram">
               <Camera className="size-5" />
-            </SocialLink>
-            <SocialLink href="#" label="Facebook">
-              <MessageCircle className="size-5" />
-            </SocialLink>
-            <SocialLink href="#" label="Telegram">
-              <Send className="size-5" />
             </SocialLink>
           </div>
         </div>
