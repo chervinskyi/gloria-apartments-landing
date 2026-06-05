@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
@@ -13,12 +13,30 @@ export function RoomSlider({
 }) {
   const [index, setIndex] = useState(0)
   const count = images.length
+  const touchStartX = useRef<number | null>(null)
 
   const prev = () => setIndex((i) => (i - 1 + count) % count)
   const next = () => setIndex((i) => (i + 1) % count)
 
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return
+    const delta = touchStartX.current - e.changedTouches[0].clientX
+    if (Math.abs(delta) > 40) {
+      delta > 0 ? next() : prev()
+    }
+    touchStartX.current = null
+  }
+
   return (
-    <div className="group relative aspect-[4/3] overflow-hidden rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none">
+    <div
+      className="group relative aspect-[4/3] overflow-hidden rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none"
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+    >
       {images.map((src, i) => (
         <div
           key={src}
@@ -40,7 +58,7 @@ export function RoomSlider({
             type="button"
             onClick={prev}
             aria-label="Previous photo"
-            className="absolute left-3 top-1/2 inline-flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-background/80 text-foreground opacity-0 shadow-sm backdrop-blur-sm transition-opacity hover:bg-background group-hover:opacity-100 focus-visible:opacity-100"
+            className="absolute left-3 top-1/2 inline-flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-background/80 text-foreground shadow-sm backdrop-blur-sm transition-opacity hover:bg-background md:opacity-0 md:group-hover:opacity-100 md:focus-visible:opacity-100"
           >
             <ChevronLeft className="size-5" />
           </button>
@@ -48,7 +66,7 @@ export function RoomSlider({
             type="button"
             onClick={next}
             aria-label="Next photo"
-            className="absolute right-3 top-1/2 inline-flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-background/80 text-foreground opacity-0 shadow-sm backdrop-blur-sm transition-opacity hover:bg-background group-hover:opacity-100 focus-visible:opacity-100"
+            className="absolute right-3 top-1/2 inline-flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-background/80 text-foreground shadow-sm backdrop-blur-sm transition-opacity hover:bg-background md:opacity-0 md:group-hover:opacity-100 md:focus-visible:opacity-100"
           >
             <ChevronRight className="size-5" />
           </button>
