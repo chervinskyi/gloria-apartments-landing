@@ -221,7 +221,7 @@ export function BookingContacts({ lang }: { lang: Lang }) {
             <div className="overflow-hidden rounded-2xl border border-border/70 shadow-sm">
               <iframe
                 title={t.mapTitle}
-                src="https://www.google.com/maps?q=Skhidnytsia,+Lviv+Oblast,+Ukraine&output=embed"
+                src="https://www.google.com/maps?q=Gloria+Apartments+Skhidnytsia+Ukraine&output=embed"
                 className="h-72 w-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

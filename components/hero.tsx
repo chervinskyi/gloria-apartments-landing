@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { CalendarDays, Users, Search, ExternalLink } from "lucide-react"
 import type { Lang } from "@/lib/translations"
 import { translations, BOOKING_URL } from "@/lib/translations"
@@ -19,14 +20,16 @@ export function Hero({ lang }: { lang: Lang }) {
 
   return (
     <section id="top" className="relative flex min-h-screen items-center justify-center overflow-hidden">
-      <img
+      <Image
         src="/images/booking/photo-6.jpg"
         alt={
           lang === "uk"
             ? "Тераса апартаментів Gloria із садом у Східниці"
             : "Terrace of Gloria Apartments with garden in Skhidnytsia"
         }
-        className="absolute inset-0 size-full object-cover"
+        fill
+        priority
+        className="object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-foreground/55 via-foreground/35 to-foreground/65" />
 

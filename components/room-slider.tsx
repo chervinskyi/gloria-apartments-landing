@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 export function RoomSlider({
@@ -19,13 +20,18 @@ export function RoomSlider({
   return (
     <div className="group relative aspect-[4/3] overflow-hidden rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none">
       {images.map((src, i) => (
-        <img
+        <div
           key={src}
-          src={src || "/placeholder.svg"}
-          alt={`${alt} — ${i + 1}`}
-          className="absolute inset-0 size-full object-cover transition-opacity duration-700"
+          className="absolute inset-0 transition-opacity duration-700"
           style={{ opacity: i === index ? 1 : 0 }}
-        />
+        >
+          <Image
+            src={src || "/placeholder.svg"}
+            alt={`${alt} — ${i + 1}`}
+            fill
+            className="object-cover"
+          />
+        </div>
       ))}
 
       {count > 1 && (

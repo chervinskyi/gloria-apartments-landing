@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import type { Lang } from "@/lib/translations"
 import { translations } from "@/lib/translations"
 import { Reveal } from "@/components/reveal"
@@ -40,27 +41,36 @@ export function About({ lang }: { lang: Lang }) {
 
         <Reveal delay={120} className="order-1 lg:order-2">
           <div className="grid grid-cols-2 gap-4">
-            <img
-              src="/images/about.png"
-              alt={
-                lang === "uk"
-                  ? "Фасад гостьового будинку серед лісу"
-                  : "Guesthouse facade among the forest"
-              }
-              className="col-span-2 aspect-[16/10] w-full rounded-2xl object-cover shadow-sm"
-            />
-            <img
-              src="/images/gallery-2.png"
-              alt={
-                lang === "uk" ? "Затишні деталі інтер'єру" : "Cozy interior details"
-              }
-              className="aspect-square w-full rounded-2xl object-cover shadow-sm"
-            />
-            <img
-              src="/images/gallery-1.png"
-              alt={lang === "uk" ? "Карпатський ліс" : "Carpathian forest"}
-              className="aspect-square w-full rounded-2xl object-cover shadow-sm"
-            />
+            <div className="relative col-span-2 aspect-[16/10] w-full overflow-hidden rounded-2xl shadow-sm">
+              <Image
+                src="/images/about.png"
+                alt={
+                  lang === "uk"
+                    ? "Фасад гостьового будинку серед лісу"
+                    : "Guesthouse facade among the forest"
+                }
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="relative aspect-square w-full overflow-hidden rounded-2xl shadow-sm">
+              <Image
+                src="/images/gallery-2.png"
+                alt={
+                  lang === "uk" ? "Затишні деталі інтер'єру" : "Cozy interior details"
+                }
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="relative aspect-square w-full overflow-hidden rounded-2xl shadow-sm">
+              <Image
+                src="/images/gallery-1.png"
+                alt={lang === "uk" ? "Карпатський ліс" : "Carpathian forest"}
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
         </Reveal>
       </div>

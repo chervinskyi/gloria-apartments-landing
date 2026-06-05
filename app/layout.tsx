@@ -19,11 +19,40 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 })
 
+const SITE_URL = 'https://gloria-apartments-landing.vercel.app'
+
 export const metadata: Metadata = {
   title: 'Gloria Apartments — Подобова оренда у Східниці',
   description:
-    'Затишні апартаменти для подобової оренди у Східниці, серед карпатської природи та мінеральних джерел. Два домашні номери, бронювання онлайн.',
-  generator: 'v0.app',
+    'Затишні апартаменти для подобової оренди у Східниці, серед карпатської природи та мінеральних джерел. Два домашні номери з терасою та садом. Оцінка 9,8 на Booking.com.',
+  metadataBase: new URL(SITE_URL),
+  openGraph: {
+    title: 'Gloria Apartments — Подобова оренда у Східниці',
+    description:
+      'Затишні апартаменти з терасою та садом біля мінеральних джерел Східниці. Оцінка 9,8 на Booking.com.',
+    url: SITE_URL,
+    siteName: 'Gloria Apartments',
+    images: [
+      {
+        url: '/images/booking/photo-6.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Тераса апартаментів Gloria з садом у Східниці',
+      },
+    ],
+    locale: 'uk_UA',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Gloria Apartments — Подобова оренда у Східниці',
+    description:
+      'Затишні апартаменти з терасою та садом біля мінеральних джерел Східниці. Оцінка 9,8 на Booking.com.',
+    images: ['/images/booking/photo-6.jpg'],
+  },
+  alternates: {
+    canonical: SITE_URL,
+  },
 }
 
 export default function RootLayout({

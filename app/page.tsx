@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import type { Lang } from "@/lib/translations"
 import { SiteHeader } from "@/components/site-header"
 import { Hero } from "@/components/hero"
@@ -14,6 +14,10 @@ import { SiteFooter } from "@/components/site-footer"
 
 export default function Page() {
   const [lang, setLang] = useState<Lang>("uk")
+
+  useEffect(() => {
+    document.documentElement.lang = lang
+  }, [lang])
 
   return (
     <main className="bg-background">
